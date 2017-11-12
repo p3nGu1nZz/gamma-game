@@ -11,6 +11,7 @@ let mainWindow
 function createMainWindow() {
   // Construct new BrowserWindow
   const window = new BrowserWindow()
+  window.setMenu(null);
 
   // Set url for `win`
     // points to `webpack-dev-server` in development
@@ -19,9 +20,9 @@ function createMainWindow() {
     ? `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`
     : `file://${__dirname}/index.html`
 
-  // if (isDevelopment) {
+  if (isDevelopment) {
     window.webContents.openDevTools()
-  // }
+  }
 
   window.loadURL(url)
 

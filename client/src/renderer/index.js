@@ -1,4 +1,9 @@
 'use strict';
 
-document.write("Gamma Game Client (Renderer Process)");
-console.log("Gamma Game Client (Renderer Process)");
+import Game from "./game";
+
+function main() {
+	let game = new Game();
+}
+
+main();
