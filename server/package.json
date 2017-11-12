@@ -1,5 +1,5 @@
 {
-  "name": "gamma-game-client",
+  "name": "gamma-game-server",
   "version": "0.0.1",
   "license": "LGPL",
   "scripts": {

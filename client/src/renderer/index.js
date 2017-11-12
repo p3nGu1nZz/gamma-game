@@ -1,4 +1,4 @@
 'use strict';
 
-document.write("Hello From Renderer Gamma");
-console.log("Hello From Gamma");
+document.write("Gamma Game Client (Renderer Process)");
+console.log("Gamma Game Client (Renderer Process)");

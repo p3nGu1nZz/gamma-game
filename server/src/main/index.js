@@ -55,5 +55,5 @@ app.on('activate', () => {
 // Create main BrowserWindow when electron is ready
 app.on('ready', () => {
   mainWindow = createMainWindow();
-  console.log("Gamma Game Client (Main Process)");
+  console.log("Gamma Game Server (Main Process)");
 })
