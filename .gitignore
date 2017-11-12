@@ -57,6 +57,12 @@ typings/
 # dotenv environment variables file
 .env
 
+# Electron-Webpack
+.DS_Store
+dist/
+node_modules/
+thumbs.db
+
 # IDE stuff
 gamma-game.sublime-project
 gamma-game.sublime-workspace

@@ -19,9 +19,9 @@ function createMainWindow() {
     ? `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`
     : `file://${__dirname}/index.html`
 
-  if (isDevelopment) {
+  // if (isDevelopment) {
     window.webContents.openDevTools()
-  }
+  // }
 
   window.loadURL(url)
 
@@ -54,5 +54,6 @@ app.on('activate', () => {
 
 // Create main BrowserWindow when electron is ready
 app.on('ready', () => {
-  mainWindow = createMainWindow()
+  mainWindow = createMainWindow();
+  console.log("Hello From Main Gamma");
 })
