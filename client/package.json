@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "license": "LGPL",
   "scripts": {
-    "dev": "electron-webpack && electron-webpack dev",
+    "dev": "electron-webpack dev",
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
