@@ -2,6 +2,8 @@
 
 import Game from "./game";
 
+let g_game = null;
+
 function init() { 
     document.body.scrollTop = 0;
     document.body.style.overflow = "hidden";
@@ -10,7 +12,7 @@ function init() {
 
 function main() {
 	init();
-	let game = new Game();
+	g_game = new Game();
 }
 
 main();

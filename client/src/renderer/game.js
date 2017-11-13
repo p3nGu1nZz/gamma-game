@@ -5,8 +5,8 @@ import * as MainLoop from 'mainloop.js'
 
 class Game {
 	constructor() {
-		// var scene = new THREE.Scene();
-		// var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+		// const scene = new THREE.Scene();
+		// const camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 
 		// var renderer = new THREE.WebGLRenderer();
 		// renderer.setSize( window.innerWidth, window.innerHeight );
@@ -29,20 +29,21 @@ class Game {
 		// };
 
 		// animate();
-		MainLoop.setBegin(this.begin).setUpdate(this.update).setDraw(this.draw).setEnd(this.end).start();
-	}
 
-	begin(timestamp, delta) {
-	}
+		MainLoop.setBegin(begin).setUpdate(update).setDraw(draw).setEnd(end).start();
+		
+		function begin(timestamp, delta) {
+		}
 
-	update(delta) {
-	}
+		function update(delta) {
+		}
 
-	draw(interpolationPercentage) {
-	}
+		function draw(interpolationPercentage) {
+		}
 
-	end(fps, panic) {
-		if(panic) MainLoop.resetFrameDelta() 
+		function end(fps, panic) {
+			if(panic) MainLoop.resetFrameDelta() 
+		}
 	}
 }
 
