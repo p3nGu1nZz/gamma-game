@@ -93,7 +93,7 @@ class Game {
       }
     }
 
-    function createStats(config) {
+    function createStats() {
       let fpsStats = new Stats();
       fpsStats.showPanel(0);
       fpsStats.dom.style.opacity = "0.69";
@@ -101,7 +101,6 @@ class Game {
       fpsStats.dom.style.top = "4px";
       fpsStats.dom.style.left = "4px";
       document.body.appendChild(fpsStats.dom);
-      config.fpsStats = fpsStats;
 
       let updateStats = new Stats();
       updateStats.showPanel(1);
@@ -110,7 +109,6 @@ class Game {
       updateStats.dom.style.top = "4px";
       updateStats.dom.style.left = "84px";
       document.body.appendChild(updateStats.dom);
-      config.updateStats = updateStats;
 
       let drawStats = new Stats();
       drawStats.showPanel(1);
@@ -119,7 +117,6 @@ class Game {
       drawStats.dom.style.top = "4px";
       drawStats.dom.style.left = "168px";
       document.body.appendChild(drawStats.dom);
-      config.drawStats = drawStats;
 
       let memStats = new Stats();
       memStats.showPanel(2);
@@ -128,7 +125,13 @@ class Game {
       memStats.dom.style.top = "4px";
       memStats.dom.style.left = "252px";
       document.body.appendChild(memStats.dom);
-      config.memStats = memStats;
+
+      Object.assign(state, {
+        fpsStats,
+        updateStats,
+        drawStats,
+        memStats,
+      });
     }
 
     //public
