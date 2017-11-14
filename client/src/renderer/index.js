@@ -2,8 +2,8 @@
 
 import Game from "./game";
 
-const isDevelopment = process.env.NODE_ENV !== "production";
-let g_game = null;
+window.isDev = process.env.NODE_ENV !== "production";
+window.game = null;
 
 function init() {
   document.body.scrollTop = 0;
@@ -13,7 +13,7 @@ function init() {
 
 function main() {
   init();
-  g_game = new Game();
+  window.game = new Game();
 }
 
 main();

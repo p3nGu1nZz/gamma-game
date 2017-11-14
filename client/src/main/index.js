@@ -2,18 +2,16 @@
 
 import { app, BrowserWindow } from "electron";
 
-const isDevelopment = process.env.NODE_ENV !== "production";
+const isDev = process.env.NODE_ENV !== "production";
 let mainWindow;
 
 function createMainWindow() {
   const window = new BrowserWindow();
   window.setMenu(null);
 
-  const url = isDevelopment
-    ? `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`
-    : `file://${__dirname}/index.html`;
+  const url = isDev ? `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}` : `file://${__dirname}/index.html`;
 
-  if (isDevelopment) {
+  if (isDev) {
     window.webContents.openDevTools();
   }
 
