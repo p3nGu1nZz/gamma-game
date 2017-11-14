@@ -1,3 +1,5 @@
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 # gamma-game
 Gamma is an open source and cross-platform massive multiplayer arena set in an post-apocalyptic modern world.
 
