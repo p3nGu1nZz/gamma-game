@@ -19,9 +19,9 @@ function init() {
 /*
  * used to run a game in the window
  */
-function run() {
+function start() {
   window.game.load(window.game.state);
-  window.game.start(window.game.state);
+  window.game.run(window.game.state);
 }
 
 /*
@@ -29,7 +29,7 @@ function run() {
  */
 function main() {
   init();
-  run();
+  start();
 }
 
 // do it!!!

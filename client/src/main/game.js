@@ -13,15 +13,13 @@ class Game {
       require("electron-debug")({ showDevTools: false });
     }
 
-    let state = {};
-
     let gameWindow,
       defaultWindowSize = {
         x: 1024,
         y: 720,
       };
 
-    createListeners();
+    start();
 
     function createWindow() {
       log.info(`[Game] creating game window -> ${Game.inspect(defaultWindowSize)}`);
@@ -36,10 +34,13 @@ class Game {
       log.info(`[Game] created game state -> ${Game.inspect(gameWindowState)}`);
 
       let window = new BrowserWindow({
+        title: "Gamma v0.0.1-alpha",
         x: gameWindowState.x,
         y: gameWindowState.y,
         width: gameWindowState.width,
         height: gameWindowState.height,
+        minWidth: 800,
+        minHeight: 600,
         show: false,
         backgroundColor: "#000000",
         fullscreenable: true,
@@ -56,10 +57,6 @@ class Game {
         ? `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`
         : `file://${__dirname}/index.html`;
 
-      // if (isDev) {
-      //   window.webContents.openDevTools();
-      // }
-
       log.info(`[Game] load window content -> ${url}`);
 
       window.loadURL(url);
@@ -68,7 +65,6 @@ class Game {
         log.info(`[Game] ready to show window`);
         gameWindow.show();
         gameWindow.focus();
-        // gameWindow.openDevTools({ detach: true });
         log.info(`[Game] game created! -> let's play :)`);
       });
 
@@ -77,21 +73,10 @@ class Game {
         gameWindow = null;
       });
 
-      // if (isDev) {
-      //   window.webContents.on("devtools-opened", () => {
-      //     log.info(`[Game] dev tools opened`);
-      //     window.focus();
-      //     setImmediate(() => {
-      //       window.focus();
-      //     });
-      //     // require("devtron").install();
-      //   });
-      // }
-
       return window;
     }
 
-    function createListeners() {
+    function start() {
       app.on("window-all-closed", () => {
         log.info(`[Game] all windows closed -> quite`);
         if (platform.isDarwin) app.quit();

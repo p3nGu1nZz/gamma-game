@@ -17,15 +17,17 @@ class Game {
 
     // loads the game objects before starting the main loop
     function load(state) {
-      if (isDev) createStats(state);
+      if (isDev) createStats();
+      initWin();
+      listenToWinResize();
 
       // our scene to load stuff into and camera to view it
       let scene = new THREE.Scene();
-      let camera = new THREE.PerspectiveCamera(75, Game.windowX / Game.windowY, 0.1, 1000);
+      let camera = new THREE.PerspectiveCamera(75, state.win.width / state.win.height, 0.1, 1000);
 
       // create our renderer for the scene
       let renderer = new THREE.WebGLRenderer();
-      renderer.setSize(Game.windowX, Game.windowY);
+      renderer.setSize(state.win.width, state.win.height);
       Game.container.appendChild(renderer.domElement);
 
       // create cube game object
@@ -53,7 +55,7 @@ class Game {
     /*
      * starts the actual game's main loop and configures loop functions
      */
-    function start(state) {
+    function run(state) {
       state.mainLoop = MainLoop.setBegin(begin)
         .setUpdate(update)
         .setDraw(draw)
@@ -98,7 +100,8 @@ class Game {
     function update(delta) {
       if (isDev) state.updateStats.begin();
 
-      // ...code
+      state.cube.rotation.x += 0.05;
+      state.cube.rotation.y += 0.05;
 
       if (isDev) state.updateStats.end();
     }
@@ -109,8 +112,6 @@ class Game {
     function draw(interpolationPercentage) {
       if (isDev) state.drawStats.begin();
 
-      state.cube.rotation.x += 0.05;
-      state.cube.rotation.y += 0.05;
       state.renderer.render(state.scene, state.camera);
 
       if (isDev) state.drawStats.end();
@@ -164,12 +165,38 @@ class Game {
     }
 
     /*
+     * setup our state for our window
+     */
+    function initWin() {
+      let win = { browser: require("browser-size")() };
+      win.width = win.browser.width;
+      win.height = win.browser.height;
+      Object.assign(state, { win });
+    }
+
+    /*
+     * listen for window resizing so we can adjust the canvas gl
+     */
+    function listenToWinResize() {
+      let browser = state.win.browser;
+      browser.on("resize", function() {
+        state.renderer.setSize(browser.width, browser.height); // scaling
+        state.camera.aspect = browser.width / browser.height;
+        state.camera.updateProjectionMatrix();
+        Object.assign(state.win, {
+          width: browser.width,
+          height: browser.height,
+        });
+      });
+    }
+
+    /*
      * public
      */
     return {
       state: state,
       load: load,
-      start: start,
+      run: run,
       pause: pause,
       resume: resume,
     };
@@ -180,20 +207,6 @@ class Game {
    */
   static get container() {
     return document.body;
-  }
-
-  /*
-   * the horizontal width of our window in pixels
-   */
-  static get windowX() {
-    return window.innerWidth;
-  }
-
-  /*
-   * the vertical height of our window in pixels
-   */
-  static get windowY() {
-    return window.innerHeight;
   }
 }
 
