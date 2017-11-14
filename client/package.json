@@ -1,7 +1,19 @@
 {
   "name": "gamma-game-client",
+  "productName": "Gamma",
+  "description": "Gamma",
   "version": "0.0.1",
+  "private": true,
+  "author": {
+    "name": "1-14x0r",
+    "email": "rawsonkara@gmail.com"
+  },
+  "copyright": "Copyright © 2017 1-14x0r",
   "license": "LGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1-14x0r/gamma-game.git"
+  },
   "scripts": {
     "dev": "yarn compile && electron-webpack dev",
     "compile": "electron-webpack",
@@ -10,15 +22,20 @@
     "release": "yarn dist"
   },
   "dependencies": {
+    "electron-is-dev": "^0.3.0",
+    "electron-log": "^2.2.11",
+    "electron-platform": "^1.2.0",
+    "electron-window-state": "^4.1.1",
     "mainloop.js": "^1.0.4",
     "prettier-webpack-plugin": "^0.2.2",
-    "source-map-support": "^0.5.0",
     "stats.js": "^0.17.0",
     "three": "^0.88.0"
   },
   "devDependencies": {
+    "devtron": "^1.4.0",
     "electron": "1.7.9",
     "electron-builder": "^19.42.1",
+    "electron-debug": "^1.4.0",
     "electron-webpack": "1.10.1",
     "webpack": "^3.8.1"
   },

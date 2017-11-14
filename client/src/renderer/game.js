@@ -89,10 +89,7 @@ class Game {
      * the scene for updating
      */
     function begin(timestamp, delta) {
-      if (isDev) {
-        state.fpsStats.begin();
-        state.memStats.begin();
-      }
+      if (isDev) state.fpsStats.begin();
     }
 
     /*
@@ -124,10 +121,7 @@ class Game {
      */
     function end(fps, panic) {
       if (panic) MainLoop.resetFrameDelta();
-      if (isDev) {
-        state.fpsStats.end();
-        state.memStats.end();
-      }
+      if (isDev) state.fpsStats.end();
     }
 
     /*
@@ -137,7 +131,7 @@ class Game {
       // calculate our current interpolated fps => update + draw
       let fpsStats = new Stats();
       fpsStats.showPanel(0);
-      fpsStats.dom.style.opacity = "0.69";
+      // fpsStats.dom.style.opacity = "0.69";
       fpsStats.dom.style.position = "absolute";
       fpsStats.dom.style.top = "4px";
       fpsStats.dom.style.left = "4px";
@@ -146,36 +140,26 @@ class Game {
       // calculate the total update time of the game objects
       let updateStats = new Stats();
       updateStats.showPanel(1);
-      updateStats.dom.style.opacity = "0.69";
+      // updateStats.dom.style.opacity = "0.69";
       updateStats.dom.style.position = "absolute";
       updateStats.dom.style.top = "4px";
-      updateStats.dom.style.left = "84px";
+      updateStats.dom.style.left = "88px";
       Game.container.appendChild(updateStats.dom);
 
       // calculate the total draw time of renderer
       let drawStats = new Stats();
       drawStats.showPanel(1);
-      drawStats.dom.style.opacity = "0.69";
+      // drawStats.dom.style.opacity = "0.69";
       drawStats.dom.style.position = "absolute";
       drawStats.dom.style.top = "4px";
-      drawStats.dom.style.left = "168px";
+      drawStats.dom.style.left = "172px";
       Game.container.appendChild(drawStats.dom);
-
-      // used to track game memory heap usuage
-      let memStats = new Stats();
-      memStats.showPanel(2);
-      memStats.dom.style.opacity = "0.69";
-      memStats.dom.style.position = "absolute";
-      memStats.dom.style.top = "4px";
-      memStats.dom.style.left = "252px";
-      Game.container.appendChild(memStats.dom);
 
       // update the game state
       Object.assign(state, {
         fpsStats,
         updateStats,
         drawStats,
-        memStats,
       });
     }
 
