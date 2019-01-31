@@ -20,6 +20,6 @@ hhhcck... the battle drones are after me....
 
 ...End of Transmission => 1-14X0r
 
-
+<eof>
 
 @https://github.com/1-14x0r/gamma-game
